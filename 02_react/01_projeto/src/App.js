@@ -8,17 +8,6 @@ class App extends Component {
     post: []
   };
 
-  timeOutUpdate = null;
-
-
-
-  componentDidUpdate() {
-  }
-
-
-  componentWillUnmount() {
-  }
-
   componentDidMount() {
     this.loadPost();
   }
