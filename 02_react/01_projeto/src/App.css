@@ -19,7 +19,12 @@
 }
 
 .post:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
+}
+
+.post h1:hover{
+  font-style: italic;
+  text-decoration: underline;
 }
 
 .post-content { 
