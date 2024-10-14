@@ -3,18 +3,22 @@ import './App.css';
 import { Component } from 'react';
 
 class App extends Component {
+  //Forma antiga
+  /*
   constructor(props){
     super(props);
     //Forma antiga eu tenho que compartilhar o estado 
     //Com o 
     this.handlePclick = this.handlePclick.bind(this);
-    this.state = {
-      name: 'Altenir Modesto Gomes',
-      counter:0
-    };
   }
+  */
+ //Forma nova usando o class fields
+  state = {
+    name: 'Altenir Modesto Gomes',
+    counter:0
+  };
   //Forma antiga de se fazer o handle click
-  handlePclick(){
+  handlePclick = () => {
     this.setState({name:'Altenir Não Gomes Modesto'});
   }
   //Forma hackeada de fazer,
