@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
+import { PostCard } from './compoments/postCard';
 
 class App extends Component {
 
@@ -42,13 +43,7 @@ class App extends Component {
         <div className='posts'>
           {
             post.map(value => (
-              <div className='post'>
-                <img src={value.cover} alt={value.title}/>
-                <div key={value.id} className='post-content'>
-                  <h1>{value.title}</h1>
-                  <p>{value.body}</p>
-                </div>
-              </div>
+             <PostCard body={value.body} cover={value.cover} id={value.id} title={value.title} />
             ))
           }
         </div>
