@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
-import { PostCard } from './compoments/postCard';
-import {loadPost} from './utils/loadPosts.js';
+import { loadPost } from './utils/loadPosts.js';
+import { Posts } from './compoments/posts/index.jsx';
 
 class App extends Component {
 
@@ -24,18 +24,7 @@ class App extends Component {
     const { post, counter } = this.state;
     return (
       <section className='container'>
-        <div className='posts'>
-          {
-            post.map(value => (
-              <PostCard
-                key={value.id}
-                body={value.body}
-                cover={value.cover}
-                title={value.title}
-              />
-            ))
-          }
-        </div>
+        <Posts posts={post} />
       </section>
     );
   }
