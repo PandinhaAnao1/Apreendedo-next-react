@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
 import { PostCard } from './compoments/postCard';
+import {loadPost} from './utils/loadPosts.js';
 
 class App extends Component {
 
@@ -13,28 +14,11 @@ class App extends Component {
     this.loadPost();
   }
 
+
   loadPost = async () => {
-    const postResponse = fetch(
-      'https://jsonplaceholder.typicode.com/posts'
-    );
-
-    const photosResponse = fetch(
-      'https://jsonplaceholder.typicode.com/photos'
-    );
-    const [posts, photos] = await Promise.all([postResponse, photosResponse]);
-
-    const postJson = await posts.json();
-
-    const photoJson = await photos.json();
-
-    const postImages = postJson.map((post, index) => (
-      { ...post, cover: photoJson[index].url }
-    ));
-
-    this.setState({ post: postImages });
+    const postAndPhotos = await loadPost();
+    this.setState({ post: postAndPhotos });
   }
-
-
 
   render() {
     const { post, counter } = this.state;
