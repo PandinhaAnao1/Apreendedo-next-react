@@ -1,10 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
+import './styles.css';
 import { Component } from 'react';
-import { loadPost } from './utils/loadPosts.js';
-import { Posts } from './compoments/posts/index.jsx';
+import { loadPost } from '../../utils/loadPosts.js';
+import { Posts } from '../../compoments/posts/index.jsx';
 
-class App extends Component {
+class Home extends Component {
 
   state = {
     post: []
@@ -31,4 +30,4 @@ class App extends Component {
 }
 
 
-export default App;
+export default Home;
