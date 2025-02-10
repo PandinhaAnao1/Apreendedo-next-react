@@ -9,7 +9,7 @@ class Home extends Component {
     post: [],
     allPosts: [],
     page: 0,
-    postsPerPage: 2,
+    postsPerPage: 100,
   };
 
   componentDidMount() {
