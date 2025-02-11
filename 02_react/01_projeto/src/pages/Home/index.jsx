@@ -3,6 +3,7 @@ import { Component } from 'react';
 import { loadPost } from '../../utils/loadPosts.js';
 import { Posts } from '../../compoments/posts/index.jsx';
 import { Botao } from '../../compoments/botao';
+import { TextInput } from '../../compoments/TextInput/index.jsx';
 class Home extends Component {
 
   state = {
@@ -10,6 +11,8 @@ class Home extends Component {
     allPosts: [],
     page: 0,
     postsPerPage: 10,
+    searchValue: ''
+
   };
 
   componentDidMount() {
@@ -40,19 +43,41 @@ class Home extends Component {
     post.push(...nextPosts);
 
     this.setState({ post, page: nextPage });
+  }
 
-
+  handleChange = (e) => {
+    const { value } = e.target;
+    this.setState({ searchValue: value });
+    console.log(e.target.value)
   }
 
   render() {
-    const { post, counter, allPosts, postsPerPage, page} = this.state;
+    const { post, counter, allPosts, postsPerPage, page, searchValue } = this.state;
     const noMoerPosts = page + postsPerPage >= allPosts.length;
 
+    const filteredPosts = !!searchValue ?
+      allPosts.filter(post => {
+        return post.title.toLowerCase().includes(searchValue.toLowerCase());
+      }) : post;
+
     return (
-      <div>
-        <section className='container'>
-          <Posts posts={post} />
-        </section>
+      <section className='container'>
+      
+        <TextInput
+          searchValue={searchValue}
+          handleChange={this.handleChange}
+        />
+
+        {
+          filteredPosts.length === 0 && (
+            <p>Post não encontrado</p>
+          )
+        }
+        {
+          filteredPosts.length > 0 && (
+            <Posts posts={filteredPosts} />
+          )
+        }
         <div className='container-botao'>
           <Botao
             text='Carregar mais posts'
@@ -60,7 +85,7 @@ class Home extends Component {
             disabled={noMoerPosts}
           />
         </div>
-      </div>
+      </section>
     );
   }
 }
