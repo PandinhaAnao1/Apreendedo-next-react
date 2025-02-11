@@ -39,19 +39,27 @@ class Home extends Component {
     const nextPosts = allPosts.slice(nextPage, nextPage + postsPerPage);
     post.push(...nextPosts);
 
-    this.setState({post, page: nextPage});
+    this.setState({ post, page: nextPage });
 
 
   }
 
   render() {
-    const { post, counter } = this.state;
+    const { post, counter, allPosts, postsPerPage, page} = this.state;
+    const noMoerPosts = page + postsPerPage >= allPosts.length;
+
     return (
       <div>
         <section className='container'>
           <Posts posts={post} />
         </section>
-        <Botao text='load more post' onClick={this.loadMorePosts}  />
+        <div className='container-botao'>
+          <Botao
+            text='Carregar mais posts'
+            onClick={this.loadMorePosts}
+            disabled={noMoerPosts}
+          />
+        </div>
       </div>
     );
   }

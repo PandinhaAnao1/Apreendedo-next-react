@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-
+import './styles.css';
 export class Botao extends Component {
-    
-    render(){
-        const { text, onClick } = this.props;
+
+    render() {
+        const { text, onClick, disabled } = this.props;
+
         return (
-            <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem' }} onClick={onClick}>
-                <button>{text}</button>
-            </div>
+            <button
+                className='botao'
+                onClick={onClick}
+                disabled={disabled}
+            >
+                {text}
+            </button>
         );
-    }   
+    }
 };
