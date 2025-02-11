@@ -9,7 +9,7 @@ class Home extends Component {
     post: [],
     allPosts: [],
     page: 0,
-    postsPerPage: 100,
+    postsPerPage: 10,
   };
 
   componentDidMount() {
@@ -28,7 +28,19 @@ class Home extends Component {
   }
 
   loadMorePosts = () => {
-    console.log('load more posts');
+    const {
+      page,
+      postsPerPage,
+      allPosts,
+      post,
+    } = this.state;
+
+    const nextPage = page + postsPerPage;
+    const nextPosts = allPosts.slice(nextPage, nextPage + postsPerPage);
+    post.push(...nextPosts);
+
+    this.setState({post, page: nextPage});
+
 
   }
 
@@ -39,7 +51,7 @@ class Home extends Component {
         <section className='container'>
           <Posts posts={post} />
         </section>
-        <Botao text={'load more post'}/>
+        <Botao text='load more post' onClick={this.loadMorePosts}  />
       </div>
     );
   }
