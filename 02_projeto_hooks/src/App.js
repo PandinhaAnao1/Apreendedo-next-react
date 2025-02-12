@@ -1,12 +1,11 @@
 import './App.css';
 import P from 'prop-types';
-import React, { useState, useEffect, use, useCallback } from 'react';
+import { useState, useEffect, use, useCallback, useMemo } from 'react';
 
 //Use memo faz cache dos dados da aplicação
-const Button = React.memo(function Button({ icrementButton }){
-
+const Button = ({ icrementButton }) => {
   return <button onClick={() => icrementButton(10)}>+</button>
-});
+};
 
 Button.prototype = {
   icrementButton: P.func
@@ -19,7 +18,7 @@ function App() {
 
   const incrementCounter = useCallback((num) => {
     //Forma de não criar as dependencias com o counter
-    setCounter((c) =>  c + num);
+    setCounter((c) => c + num);
   }, [])
 
   return (
@@ -28,7 +27,9 @@ function App() {
       <h1>
         C1: {counter}
       </h1>
-      <Button icrementButton={incrementCounter}/>
+      {useMemo(() => {
+        return <Button icrementButton={incrementCounter} />
+      }, [incrementCounter])}
     </div>
   );
 }
