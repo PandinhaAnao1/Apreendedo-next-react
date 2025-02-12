@@ -2,7 +2,7 @@ import './styles.css';
 import { useCallback, useEffect, useState } from 'react';
 import { loadPost } from '../../utils/loadPosts.js';
 import { Posts } from '../../compoments/posts/index.jsx';
-import { Botao } from '../../compoments/botao';
+import { Botao } from '../../compoments/botao/index.jsx';
 import { TextInput } from '../../compoments/TextInput/index.jsx';
 
 
