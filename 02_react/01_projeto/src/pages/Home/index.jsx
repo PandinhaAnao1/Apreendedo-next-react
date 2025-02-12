@@ -32,7 +32,7 @@ export const Home = () => {
     post.push(...nextPosts);
     
     setPost(post);
-    setPage( nextPage );
+    setPage(nextPage);
 
   }
     
@@ -76,87 +76,3 @@ export const Home = () => {
     </section>
         );
 }
-// class Home extends Component {
-
-//   state = {
-//     post: [],
-//     allPosts: [],
-//     page: 0,
-//     postsPerPage: 10,
-//     searchValue: ''
-
-//   };
-
-//   componentDidMount() {
-//     this.loadPost();
-//   }
-
-
-//   loadPost = async () => {
-//     const { page, postsPerPage } = this.state;
-//     const postAndPhotos = await loadPost();
-//     this.setState(
-//       {
-//         post: postAndPhotos.slice(page, postsPerPage),
-//         allPosts: postAndPhotos
-//       });
-//   }
-
-//   loadMorePosts = () => {
-//     const {
-//       page,
-//       postsPerPage,
-//       allPosts,
-//       post,
-//     } = this.state;
-
-//     const nextPage = page + postsPerPage;
-//     const nextPosts = allPosts.slice(nextPage, nextPage + postsPerPage);
-//     post.push(...nextPosts);
-
-//     this.setState({ post, page: nextPage });
-//   }
-
-//   handleChange = (e) => {
-//     const { value } = e.target;
-//     this.setState({ searchValue: value });
-//     console.log(e.target.value)
-//   }
-
-//   render() {
-//     const { post, counter, allPosts, postsPerPage, page, searchValue } = this.state;
-
-
-
-//     return (
-//       <section className='container'>
-      
-//         <TextInput
-//           searchValue={searchValue}
-//           handleChange={this.handleChange}
-//         />
-
-//         {
-//           filteredPosts.length === 0 && (
-//             <p>Post não encontrado</p>
-//           )
-//         }
-//         {
-//           filteredPosts.length > 0 && (
-//             <Posts posts={filteredPosts} />
-//           )
-//         }
-//         <div className='container-botao'>
-//           <Botao
-//             text='Carregar mais posts'
-//             onClick={this.loadMorePosts}
-//             disabled={noMoerPosts}
-//           />
-//         </div>
-//       </section>
-//     );
-//   }
-// }
-
-
-// export default Home;
