@@ -1,24 +1,15 @@
-import P from 'prop-types';
+import { useContext } from "react";
 
-PostList.propTypes = {
-    post: P.shape({
-        id: P.number,
-        title: P.string,
-        body: P.string, 
-    })
-}
-export default function PostList({ list, handleClick }) {
-
+export default function Post({ post }) {
+    const { handleClick } = useContext(lobalState);
     return (
         <div>
-           {list.map((post, index) => {
-                return (
-                    <div key={index} onClick={() => handleClick(post.title)}>  
-                        <h1>{post.title}</h1>
-                        <p>{post.body}</p>
-                    </div>
-                );
-            })}
+
+            <div key={index} onClick={() => handleClick(post.title)}>
+                <h1>{post.title}</h1>
+                <p>{post.body}</p>
+            </div>
+
         </div>
     );
 }

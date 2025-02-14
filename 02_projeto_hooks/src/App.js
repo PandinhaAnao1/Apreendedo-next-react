@@ -2,6 +2,15 @@ import './App.css';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import PostList from './compoments/post';
 
+
+const globalState = {
+    handleClick: (e) => {
+        console.log(e)
+    }
+}
+
+const GlobalContext = React.createContext();  
+
 function App() {
 
   const [post, setPost] = useState([]);
@@ -31,7 +40,7 @@ function App() {
       />
       {
         useMemo(() => {
-          return <PostList list={post}  handleClick={(e) => setValueSearch(e)}/>
+          return <PostList list={post}  />
         }, [post])
       }
     </div>
