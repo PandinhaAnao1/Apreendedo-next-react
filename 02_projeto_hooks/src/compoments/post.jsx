@@ -7,13 +7,13 @@ PostList.propTypes = {
         body: P.string, 
     })
 }
-export default function PostList({ list }) {
+export default function PostList({ list, handleClick }) {
 
     return (
         <div>
            {list.map((post, index) => {
                 return (
-                    <div key={index}>
+                    <div key={index} onClick={() => handleClick(post.title)}>  
                         <h1>{post.title}</h1>
                         <p>{post.body}</p>
                     </div>
