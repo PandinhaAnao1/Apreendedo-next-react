@@ -1,35 +1,31 @@
 import './App.css';
-import P from 'prop-types';
-import { useState, useEffect, use, useCallback, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import PostList from './compoments/post';
 
-//Use memo faz cache dos dados da aplicação
-const Button = ({ icrementButton }) => {
-  return <button onClick={() => icrementButton(10)}>+</button>
-};
-
-Button.prototype = {
-  icrementButton: P.func
-}
-
-// Use callback usado em funções pesadas
-// para poder nao redenrizar novamente os filhos caso as dependencias nao mudem
 function App() {
-  const [counter, setCounter] = useState(0);
 
-  const incrementCounter = useCallback((num) => {
-    //Forma de não criar as dependencias com o counter
-    setCounter((c) => c + num);
-  }, [])
+  const [post, setPost] = useState([]);
+  const [valueSearch, setValueSearch] = useState('');
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then((json) => json.json())
+      .then((post) => setPost(post));
+  }, []);
+
 
   return (
     <div className="App">
-      <p>Teste 3</p>
-      <h1>
-        C1: {counter}
-      </h1>
-      {useMemo(() => {
-        return <Button icrementButton={incrementCounter} />
-      }, [incrementCounter])}
+
+      <input
+        type="search"
+        value={valueSearch}
+        onChange={(e) => setValueSearch(e.target.value)}
+      />
+      {
+        useMemo(() => {
+          return <PostList list={post} />
+        }, [post])
+      }
     </div>
   );
 }
